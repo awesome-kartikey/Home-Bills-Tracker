@@ -65,7 +65,10 @@ class _HomeScreenState extends State<HomeScreen> {
                     const SizedBox(width: 4),
                     Text(
                       'Guest',
-                      style: GoogleFonts.inter(fontSize: 10, color: Colors.white),
+                      style: GoogleFonts.inter(
+                        fontSize: 10,
+                        color: Colors.white,
+                      ),
                     ),
                   ],
                 ),
@@ -86,7 +89,10 @@ class _HomeScreenState extends State<HomeScreen> {
                   else
                     Text(
                       user.uid.substring(0, 6),
-                      style: GoogleFonts.mono(fontSize: 12, color: Colors.blue[100]),
+                      style: GoogleFonts.robotoMono(
+                        fontSize: 12,
+                        color: Colors.blue[100],
+                      ),
                     ),
                   const SizedBox(width: 12),
                   IconButton(
@@ -104,7 +110,7 @@ class _HomeScreenState extends State<HomeScreen> {
         decoration: BoxDecoration(
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.05),
+              color: Colors.black.withValues(alpha: 0.05),
               blurRadius: 10,
               offset: const Offset(0, -5),
             ),
@@ -136,8 +142,14 @@ class _HomeScreenState extends State<HomeScreen> {
           currentIndex: _selectedIndex,
           selectedItemColor: Colors.blue[600],
           unselectedItemColor: Colors.grey[400],
-          selectedLabelStyle: GoogleFonts.inter(fontSize: 10, fontWeight: FontWeight.bold),
-          unselectedLabelStyle: GoogleFonts.inter(fontSize: 10, fontWeight: FontWeight.w500),
+          selectedLabelStyle: GoogleFonts.inter(
+            fontSize: 10,
+            fontWeight: FontWeight.bold,
+          ),
+          unselectedLabelStyle: GoogleFonts.inter(
+            fontSize: 10,
+            fontWeight: FontWeight.w500,
+          ),
           type: BottomNavigationBarType.fixed,
           backgroundColor: Colors.white,
           elevation: 0,

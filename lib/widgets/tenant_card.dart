@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import '../models/models.dart';
 
 class TenantCard extends StatelessWidget {
@@ -63,17 +62,11 @@ class TenantCard extends StatelessWidget {
                     const SizedBox(height: 4),
                     Text(
                       'Rent: ₹${tenant.rent.toStringAsFixed(0)}',
-                      style: TextStyle(
-                        fontSize: 14,
-                        color: Colors.grey[600],
-                      ),
+                      style: TextStyle(fontSize: 14, color: Colors.grey[600]),
                     ),
                     Text(
                       'Last Reading: ${tenant.lastReading.toStringAsFixed(1)}',
-                      style: TextStyle(
-                        fontSize: 12,
-                        color: Colors.grey[500],
-                      ),
+                      style: TextStyle(fontSize: 12, color: Colors.grey[500]),
                     ),
                   ],
                 ),

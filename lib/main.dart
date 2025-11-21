@@ -14,7 +14,7 @@ void main() async {
       options: DefaultFirebaseOptions.currentPlatform,
     );
   } catch (e) {
-    print("Firebase initialization failed: $e");
+    debugPrint("Firebase initialization failed: $e");
     // Continue anyway to show the UI, though it might fail later
   }
 
@@ -27,9 +27,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
-      providers: [
-        ChangeNotifierProvider(create: (_) => AppProvider()),
-      ],
+      providers: [ChangeNotifierProvider(create: (_) => AppProvider())],
       child: MaterialApp(
         title: 'Home Bills Tracker',
         debugShowCheckedModeBanner: false,
@@ -62,9 +60,7 @@ class AuthWrapper extends StatelessWidget {
     final appProvider = Provider.of<AppProvider>(context);
 
     if (appProvider.isLoading) {
-      return const Scaffold(
-        body: Center(child: CircularProgressIndicator()),
-      );
+      return const Scaffold(body: Center(child: CircularProgressIndicator()));
     }
 
     if (appProvider.user != null) {

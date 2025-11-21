@@ -15,13 +15,18 @@ class MilkScreen extends StatefulWidget {
 class _MilkScreenState extends State<MilkScreen> {
   DateTime _selectedDate = DateTime.now();
 
-  void _showAddEntryDialog(BuildContext context, FirestoreService service, MilkDoc? milkDoc) {
+  void _showAddEntryDialog(
+    BuildContext context,
+    FirestoreService service,
+    MilkDoc? milkDoc,
+  ) {
     final qtyController = TextEditingController();
     final dateStr = DateFormat('yyyy-MM-dd').format(_selectedDate);
-    final existingQty = milkDoc?.days[dateStr]?.fold(0.0, (a, b) => a + b) ?? 0.0;
-    
+    final existingQty =
+        milkDoc?.days[dateStr]?.fold(0.0, (a, b) => a + b) ?? 0.0;
+
     // If editing, maybe show existing entries? For now, just add new entry.
-    
+
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
@@ -36,7 +41,9 @@ class _MilkScreenState extends State<MilkScreen> {
               ),
             TextField(
               controller: qtyController,
-              keyboardType: const TextInputType.numberWithOptions(decimal: true),
+              keyboardType: const TextInputType.numberWithOptions(
+                decimal: true,
+              ),
               decoration: const InputDecoration(
                 labelText: 'Quantity (liters)',
                 hintText: 'e.g. 1.5',
@@ -98,7 +105,10 @@ class _MilkScreenState extends State<MilkScreen> {
               children: [
                 Text(
                   DateFormat('MMMM yyyy').format(_selectedDate),
-                  style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  style: const TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
                 IconButton(
                   icon: const Icon(Icons.calendar_today),
@@ -123,13 +133,20 @@ class _MilkScreenState extends State<MilkScreen> {
                 final days = milkDoc?.days ?? {};
 
                 // Generate list of days for selected month
-                final daysInMonth = DateUtils.getDaysInMonth(_selectedDate.year, _selectedDate.month);
-                
+                final daysInMonth = DateUtils.getDaysInMonth(
+                  _selectedDate.year,
+                  _selectedDate.month,
+                );
+
                 return ListView.builder(
                   padding: const EdgeInsets.all(16),
                   itemCount: daysInMonth,
                   itemBuilder: (context, index) {
-                    final day = DateTime(_selectedDate.year, _selectedDate.month, daysInMonth - index);
+                    final day = DateTime(
+                      _selectedDate.year,
+                      _selectedDate.month,
+                      daysInMonth - index,
+                    );
                     final dateStr = DateFormat('yyyy-MM-dd').format(day);
                     final quantities = days[dateStr] ?? [];
                     final total = quantities.fold(0.0, (a, b) => a + b);
@@ -140,27 +157,39 @@ class _MilkScreenState extends State<MilkScreen> {
                       color: isToday ? Colors.blue[50] : Colors.white,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12),
-                        side: BorderSide(color: isToday ? Colors.blue[200]! : Colors.grey[200]!),
+                        side: BorderSide(
+                          color: isToday
+                              ? Colors.blue[200]!
+                              : Colors.grey[200]!,
+                        ),
                       ),
                       margin: const EdgeInsets.only(bottom: 8),
                       child: ListTile(
                         onTap: () {
                           setState(() => _selectedDate = day);
-                          _showAddEntryDialog(context, firestoreService, milkDoc);
+                          _showAddEntryDialog(
+                            context,
+                            firestoreService,
+                            milkDoc,
+                          );
                         },
                         leading: Container(
                           width: 40,
                           height: 40,
                           alignment: Alignment.center,
                           decoration: BoxDecoration(
-                            color: total > 0 ? Colors.blue[100] : Colors.grey[100],
+                            color: total > 0
+                                ? Colors.blue[100]
+                                : Colors.grey[100],
                             shape: BoxShape.circle,
                           ),
                           child: Text(
                             '${day.day}',
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
-                              color: total > 0 ? Colors.blue[800] : Colors.grey[600],
+                              color: total > 0
+                                  ? Colors.blue[800]
+                                  : Colors.grey[600],
                             ),
                           ),
                         ),
@@ -171,13 +200,17 @@ class _MilkScreenState extends State<MilkScreen> {
                         trailing: total > 0
                             ? Text(
                                 '$total L',
-                                style: const TextStyle(
+                                style: TextStyle(
                                   fontSize: 16,
                                   fontWeight: FontWeight.bold,
                                   color: Colors.blue[700],
                                 ),
                               )
-                            : const Icon(Icons.add, size: 20, color: Colors.grey),
+                            : const Icon(
+                                Icons.add,
+                                size: 20,
+                                color: Colors.grey,
+                              ),
                       ),
                     );
                   },
@@ -189,15 +222,15 @@ class _MilkScreenState extends State<MilkScreen> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-            // Ensure selected date is today or allow user to pick
-            setState(() => _selectedDate = DateTime.now());
-             // We need to fetch the doc again or pass it? 
-             // The dialog needs the doc to show current total.
-             // For simplicity, we trigger the dialog via the list item usually, 
-             // but FAB can trigger for "Today".
-             // We can't easily get the doc here without the stream data.
-             // So let's just make the FAB scroll to today or pick date.
-             _pickDate();
+          // Ensure selected date is today or allow user to pick
+          setState(() => _selectedDate = DateTime.now());
+          // We need to fetch the doc again or pass it?
+          // The dialog needs the doc to show current total.
+          // For simplicity, we trigger the dialog via the list item usually,
+          // but FAB can trigger for "Today".
+          // We can't easily get the doc here without the stream data.
+          // So let's just make the FAB scroll to today or pick date.
+          _pickDate();
         },
         backgroundColor: Colors.blue[600],
         child: const Icon(Icons.calendar_month),

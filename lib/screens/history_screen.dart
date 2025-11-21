@@ -72,7 +72,9 @@ class HistoryScreen extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            DateFormat('MMM d, y').format(bill.createdAt.toDate()),
+                            DateFormat(
+                              'MMM d, y',
+                            ).format(bill.createdAt.toDate()),
                             style: TextStyle(
                               fontSize: 12,
                               color: Colors.grey[500],
@@ -83,9 +85,15 @@ class HistoryScreen extends StatelessWidget {
                       const SizedBox(height: 8),
                       Row(
                         children: [
-                          _buildInfoChip(Icons.flash_on, '${bill.unitsUsed.toStringAsFixed(1)} units'),
+                          _buildInfoChip(
+                            Icons.flash_on,
+                            '${bill.unitsUsed.toStringAsFixed(1)} units',
+                          ),
                           const SizedBox(width: 8),
-                          _buildInfoChip(Icons.currency_rupee, '${bill.totalAmount.toStringAsFixed(0)}'),
+                          _buildInfoChip(
+                            Icons.currency_rupee,
+                            bill.totalAmount.toStringAsFixed(0),
+                          ),
                         ],
                       ),
                       const SizedBox(height: 8),
