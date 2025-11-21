@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "45318970914",
+    "project_id": "home-bills-tracker",
+    "storage_bucket": "home-bills-tracker.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:45318970914:android:b2e95b60be9f3035fc347b",
+        "android_client_info": {
+          "package_name": "com.example.myapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "45318970914-iol55im8v3jaol1hj8p7epr90r7um54v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDEXnLwmbJ_JiKwIfZXRFBSvOeOwNG9qCk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "45318970914-iol55im8v3jaol1hj8p7epr90r7um54v.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
